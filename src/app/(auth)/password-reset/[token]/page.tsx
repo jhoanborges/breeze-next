@@ -5,38 +5,30 @@ import Button from '@/components/Button'
 import Input from '@/components/Input'
 import InputError from '@/components/InputError'
 import Label from '@/components/Label'
-import { useAuth } from '@/hooks/auth'
 import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import AuthSessionStatus from '@/app/(auth)/AuthSessionStatus'
 
-interface FormErrors {
-    email?: string[]
-    password?: string[]
-    password_confirmation?: string[]
-}
 
 const PasswordReset: React.FC = () => {
     const searchParams = useSearchParams()
 
-    const { resetPassword } = useAuth({ middleware: 'guest' })
-
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
-    const [errors, setErrors] = useState<FormErrors>({})
-    const [status, setStatus] = useState<string | null>(null)
+    const errors = { email: [], password: [], password_confirmation: [] }
+    const status = null
 
     const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        resetPassword({
-            email,
-            password,
-            password_confirmation: passwordConfirmation,
-            setErrors,
-            setStatus,
-        })
+        // resetPassword({
+        //     email,
+        //     password,
+        //     password_confirmation: passwordConfirmation,
+        //     setErrors,
+        //     setStatus,
+        // })
     }
 
     useEffect(() => {

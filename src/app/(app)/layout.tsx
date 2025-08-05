@@ -2,7 +2,6 @@
 
 import React from 'react'
 import Navigation from '@/app/(app)/Navigation'
-import Loading from '@/app/(app)/Loading'
 
 interface AppLayoutProps {
     children: React.ReactNode

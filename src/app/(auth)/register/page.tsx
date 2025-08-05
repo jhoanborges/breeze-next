@@ -6,38 +6,26 @@ import Input from '@/components/Input'
 import InputError from '@/components/InputError'
 import Label from '@/components/Label'
 import Link from 'next/link'
-import { useAuth } from '@/hooks/auth'
 import { useState } from 'react'
 
-interface FormErrors {
-    name?: string[]
-    email?: string[]
-    password?: string[]
-    password_confirmation?: string[]
-}
 
 const Page: React.FC = () => {
-    const { register } = useAuth({
-        middleware: 'guest',
-        redirectIfAuthenticated: '/dashboard',
-    })
-
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
-    const [errors, setErrors] = useState<FormErrors>({})
+    const errors = { name: [], email: [], password: [], password_confirmation: [] }
 
     const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
-        register({
-            name,
-            email,
-            password,
-            password_confirmation: passwordConfirmation,
-            setErrors,
-        })
+        // register({
+        //     name,
+        //     email,
+        //     password,
+        //     password_confirmation: passwordConfirmation,
+        //     setErrors,
+        // })
     }
 
     return (

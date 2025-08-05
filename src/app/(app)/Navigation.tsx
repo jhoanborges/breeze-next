@@ -18,7 +18,6 @@ const Navigation = () => {
 
     const { data: session } = useSession()
     const user = session?.user
-    console.log('user',user)
 
     const [open, setOpen] = useState(false)
 

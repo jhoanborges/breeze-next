@@ -9,17 +9,13 @@ import Link from 'next/link'
 import AuthSessionStatus from '@/app/(auth)/AuthSessionStatus'
 import { signIn } from "next-auth/react"
 
-interface FormErrors {
-    email?: string[]
-    password?: string[]
-}
 
 const Login: React.FC = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [shouldRemember, setShouldRemember] = useState(false)
-    const [errors, setErrors] = useState<FormErrors>({})
+    const [, setShouldRemember] = useState(false)
+    const errors = { email: [], password: [] }
     const [status, setStatus] = useState<string | null>(null)
 
     const credentialsAction = async (e: React.FormEvent) => {
@@ -36,7 +32,7 @@ const Login: React.FC = () => {
                 // Redirect on success
                 window.location.href = '/dashboard'
             }
-        } catch (error) {
+        } catch {
             setStatus('An error occurred during login')
         }
     }

@@ -2,16 +2,16 @@
 
 import React from 'react'
 import Button from '@/components/Button'
-import { useAuth } from '@/hooks/auth'
 import { useState } from 'react'
+import { signOut } from "next-auth/react"
 
 const Page: React.FC = () => {
-    const { logout, resendEmailVerification } = useAuth({
-        middleware: 'auth',
-        redirectIfAuthenticated: '/dashboard',
-    })
 
-    const [status, setStatus] = useState<string | null>(null)
+    const [status] = useState<string | null>(null)
+
+    function resendEmailVerification() {
+        throw new Error('Function not implemented.')
+    }
 
     return (
         <>
@@ -30,14 +30,14 @@ const Page: React.FC = () => {
             )}
 
             <div className="mt-4 flex items-center justify-between">
-                <Button onClick={() => resendEmailVerification({ setStatus })}>
+                <Button onClick={() => resendEmailVerification()}>
                     Resend Verification Email
                 </Button>
 
                 <button
                     type="button"
                     className="underline text-sm text-gray-600 hover:text-gray-900"
-                    onClick={logout}>
+                    onClick={() => signOut()}>
                     Logout
                 </button>
             </div>
