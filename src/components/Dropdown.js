@@ -1,31 +1,18 @@
 import React from 'react'
 import { Menu, Transition } from '@headlessui/react'
 
-interface DropdownProps {
-    align?: 'left' | 'top' | 'right'
-    width?: number | string
-    contentClasses?: string
-    trigger: React.ReactNode
-    children: React.ReactNode
-}
-
-const Dropdown: React.FC<DropdownProps> = ({
+const Dropdown = ({
     align = 'right',
     width = 48,
     contentClasses = 'py-1 bg-white',
     trigger,
     children,
 }) => {
-    let alignmentClasses: string
-    let widthClass: string
+    let alignmentClasses
 
     switch (width) {
         case '48':
-        case 48:
-            widthClass = 'w-48'
-            break
-        default:
-            widthClass = typeof width === 'string' ? width : `w-${width}`
+            width = 'w-48'
             break
     }
 
@@ -57,7 +44,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95">
                         <div
-                            className={`absolute z-50 mt-2 ${widthClass} rounded-md shadow-lg ${alignmentClasses}`}>
+                            className={`absolute z-50 mt-2 ${width} rounded-md shadow-lg ${alignmentClasses}`}>
                             <Menu.Items
                                 className={`rounded-md focus:outline-none ring-1 ring-black ring-opacity-5 ${contentClasses}`}
                                 static>

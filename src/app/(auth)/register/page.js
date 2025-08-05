@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import Button from '@/components/Button'
 import Input from '@/components/Input'
 import InputError from '@/components/InputError'
@@ -9,14 +8,7 @@ import Link from 'next/link'
 import { useAuth } from '@/hooks/auth'
 import { useState } from 'react'
 
-interface FormErrors {
-    name?: string[]
-    email?: string[]
-    password?: string[]
-    password_confirmation?: string[]
-}
-
-const Page: React.FC = () => {
+const Page = () => {
     const { register } = useAuth({
         middleware: 'guest',
         redirectIfAuthenticated: '/dashboard',
@@ -26,9 +18,9 @@ const Page: React.FC = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
-    const [errors, setErrors] = useState<FormErrors>({})
+    const [errors, setErrors] = useState([])
 
-    const submitForm = (event: React.FormEvent<HTMLFormElement>) => {
+    const submitForm = event => {
         event.preventDefault()
 
         register({

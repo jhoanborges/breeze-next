@@ -1,5 +1,3 @@
-'use client'
-
 import ApplicationLogo from '@/components/ApplicationLogo'
 import Dropdown from '@/components/Dropdown'
 import Link from 'next/link'
@@ -8,17 +6,12 @@ import ResponsiveNavLink, {
     ResponsiveNavButton,
 } from '@/components/ResponsiveNavLink'
 import { DropdownButton } from '@/components/DropdownLink'
+import { useAuth } from '@/hooks/auth'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
-import { signOut } from "next-auth/react"
-import { useSession } from "next-auth/react"
 
-
-const Navigation = () => {
-
-    const { data: session } = useSession()
-    const user = session?.user
-    console.log('user',user)
+const Navigation = ({ user }) => {
+    const { logout } = useAuth()
 
     const [open, setOpen] = useState(false)
 
@@ -69,9 +62,7 @@ const Navigation = () => {
                                 </button>
                             }>
                             {/* Authentication */}
-                            <DropdownButton 
-                            onClick={() => signOut()}
-                            >
+                            <DropdownButton onClick={logout}>
                                 Logout
                             </DropdownButton>
                         </Dropdown>
@@ -152,9 +143,7 @@ const Navigation = () => {
 
                         <div className="mt-3 space-y-1">
                             {/* Authentication */}
-                            <ResponsiveNavButton 
-                            onClick={() => signOut()}
-                            >
+                            <ResponsiveNavButton onClick={logout}>
                                 Logout
                             </ResponsiveNavButton>
                         </div>

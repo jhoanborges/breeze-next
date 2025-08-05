@@ -6,7 +6,7 @@ const axios = Axios.create({
         'X-Requested-With': 'XMLHttpRequest',
     },
     withCredentials: true,
-    // withXSRFToken: true  // This property may not exist in current axios version
+    withXSRFToken: true
 })
 
 export default axios

@@ -1,17 +1,16 @@
 'use client'
 
-import React from 'react'
 import Button from '@/components/Button'
 import { useAuth } from '@/hooks/auth'
 import { useState } from 'react'
 
-const Page: React.FC = () => {
+const Page = () => {
     const { logout, resendEmailVerification } = useAuth({
         middleware: 'auth',
         redirectIfAuthenticated: '/dashboard',
     })
 
-    const [status, setStatus] = useState<string | null>(null)
+    const [status, setStatus] = useState(null)
 
     return (
         <>

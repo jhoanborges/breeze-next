@@ -1,14 +1,6 @@
-import React from 'react'
 import Link from 'next/link'
 
-interface NavLinkProps {
-    active?: boolean
-    children: React.ReactNode
-    href: string
-    [key: string]: any
-}
-
-const NavLink: React.FC<NavLinkProps> = ({ active = false, children, ...props }) => (
+const NavLink = ({ active = false, children, ...props }) => (
     <Link
         {...props}
         className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium leading-5 focus:outline-none transition duration-150 ease-in-out ${
